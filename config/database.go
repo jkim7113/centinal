@@ -19,12 +19,12 @@ func CreateConnection() *sql.DB {
 
 	DSN := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", user, pw, host, port, name)
 
-	db, err := sql.Open("mysql", DSN)
+	Db, err := sql.Open("mysql", DSN)
 	util.PanicIfError(err)
 
-	err = db.Ping()
+	err = Db.Ping()
 	util.PanicIfError(err)
 
 	fmt.Println("DB Connection OK")
-	return db
+	return Db
 }
