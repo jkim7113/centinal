@@ -41,12 +41,8 @@ func (controller *ArticleController) FindById(w http.ResponseWriter, r *http.Req
 	UUID := chi.URLParam(r, "UUID")
 
 	result := controller.ArticleService.FindById(r.Context(), UUID)
-	HTTPResponse := response.HTTPResponse{
-		Code:   200,
-		Status: "Ok",
-		Data:   result,
-	}
-	util.EncodeResponseBody(w, HTTPResponse)
+	tmpl := template.Must(template.ParseFiles("./views/article.html", "./views/config.tmpl", "./views/header.tmpl"))
+	tmpl.Execute(w, dataToRender{Data: []response.ArticleResponse{result}, Path: "/article/" + UUID})
 }
 
 func (controller *ArticleController) FindAll(w http.ResponseWriter, r *http.Request) {

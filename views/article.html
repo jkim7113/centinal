@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ template "config" .}}
+        <link rel="stylesheet" href="/static/css/category.css">
+        <title>The Centinal - News</title>
+    </head>
+    <body>
+        {{ template "header" .}}
+        <div id="body-wrap">
+            <div id="body-container">
+                <div id="article-wrap">
+                    {{ range .Data }}
+                        {{ if and (.UUID) (.Title) (.Body) (.Date) (.Category) }}
+                                <h4>{{ .Category }}</h4>
+                                <h4 href={{ print "/category/" .Category }} class={{ print "category-label " "label-" .Category }}>{{ .Category }}</h4>
+                                <a class="article-title" href={{ print "/article/" .UUID }}>{{ .Title }}</a>
+                                <p class="article-date" >{{ .Date }}</p>
+                                <p class="article-preview" >{{ .Body }}</p>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
