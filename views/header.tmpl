@@ -17,13 +17,13 @@
 </header>
 <nav>
     <div id="nav-container">
-        <a href="/category/news">NEWS</a>
-        <a href="/category/opinions">OPINIONS</a>
-        <a href="/category/fictions">FICTIONS & POETRY</a>
-        <a href="/category/sports">SPORTS</a>
-        <a href="/category/reviews">REVIEWS</a>
-        <a href="/category/surveys">SURVEYS</a>
-        <a href="/staff">STAFF</a>
+        <a class={{ if eq .Path "/category/news" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/news">NEWS</a>
+        <a class={{ if eq .Path "/category/opinions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/opinions">OPINIONS</a>
+        <a class={{ if eq .Path "/category/fictions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/fictions">FICTIONS & POETRY</a>
+        <a class={{ if eq .Path "/category/sports" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/sports">SPORTS</a>
+        <a class={{ if eq .Path "/category/reviews" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/reviews">REVIEWS</a>
+        <a class={{ if eq .Path "/category/surveys" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/surveys">SURVEYS</a>
+        <a class={{ if eq .Path "/category/staff" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/staff">STAFF</a>
     </div>
 </nav>
 {{ end }}

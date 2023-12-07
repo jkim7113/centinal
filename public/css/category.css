@@ -1,0 +1,12 @@
+#category-wrap {
+    width: 100%;
+}
+
+#category-wrap > h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 4px; padding-bottom: 4px;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom: #000 1px solid;
+}

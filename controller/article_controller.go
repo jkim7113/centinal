@@ -17,6 +17,7 @@ type ArticleController struct {
 
 type dataToRender struct {
 	Data []response.ArticleResponse
+	Path string
 }
 
 func NewArticleController(articleService service.ArticleService) *ArticleController {
@@ -51,7 +52,7 @@ func (controller *ArticleController) FindById(w http.ResponseWriter, r *http.Req
 func (controller *ArticleController) FindAll(w http.ResponseWriter, r *http.Request) {
 	result := controller.ArticleService.FindAll(r.Context())
 	tmpl := template.Must(template.ParseFiles("./views/index.html", "./views/config.tmpl", "./views/header.tmpl"))
-	tmpl.Execute(w, dataToRender{Data: result})
+	tmpl.Execute(w, dataToRender{Data: result, Path: "/"})
 }
 
 func (controller *ArticleController) FindByCategory(w http.ResponseWriter, r *http.Request) {
@@ -59,5 +60,5 @@ func (controller *ArticleController) FindByCategory(w http.ResponseWriter, r *ht
 
 	result := controller.ArticleService.FindByCategory(r.Context(), Category)
 	tmpl := template.Must(template.ParseFiles("./views/category.html", "./views/config.tmpl", "./views/header.tmpl"))
-	tmpl.Execute(w, dataToRender{Data: result})
+	tmpl.Execute(w, dataToRender{Data: result, Path: "/category/" + Category})
 }
