@@ -1,10 +1,11 @@
 package util
 
 import (
+	"math"
 	"strings"
 )
 
 func EstimateReadingTime(str string) int {
 	wordLength := len(strings.Fields(str))
-	return wordLength / 200
+	return int(math.Round(float64(wordLength) / 200.0))
 }

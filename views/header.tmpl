@@ -1,0 +1,29 @@
+{{ define "header" }}
+<header>
+    <div id="header-container" >
+        <div id="header-top" class="undraggable">
+            <span>
+                <a class="header-button" href="/login">LOG IN</a>
+                <a class="header-button" href="/subscribe">SUBSCRIBE FOR FREE</a>
+            </span>
+            <img id="header-search-icon" src="/static/img/search-black.webp" />
+        </div>
+        <a href="/"><img class="undraggable" src="/static/img/centinal-logo-navy.webp" alt="Centinal Logo" /></a>
+        <div id="header-bottom" class="undraggable">
+            <h1>The Centinal</h1>
+            <p>The Student News Website of Champaign Centennial High School</p>
+        </div>
+    </div>
+</header>
+<nav>
+    <div id="nav-container">
+        <a href="/category/news">NEWS</a>
+        <a href="/category/opinions">OPINIONS</a>
+        <a href="/category/fictions">FICTIONS & POETRY</a>
+        <a href="/category/sports">SPORTS</a>
+        <a href="/category/reviews">REVIEWS</a>
+        <a href="/category/surveys">SURVEYS</a>
+        <a href="/staff">STAFF</a>
+    </div>
+</nav>
+{{ end }}

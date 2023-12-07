@@ -1,81 +1,62 @@
-html, body {
-    width: 100%;
-    height: 200%;
+#latest-wrap {
+    background-color: rgb(244,244,244);
+    width: 68%;
+}
+
+#news-wrap {
+    width: 28%;
+}
+
+#news-wrap > h4 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    margin-top: 4px; padding-bottom: 4px;
     font-family: 'Open Sans', sans-serif;
-    margin: 0;
+    border-bottom: #989898 1px solid;
 }
 
-html {
-    margin-top: 240px;
+.article-wrap {
+    position: relative;
+    border-bottom: #989898 1px solid;
+    padding-top: 8px;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0; left:0;
-    width: 100%; height: 32px;
-}
-
-#nav-container {
-    width: 880px; height: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-
-#nav-container > a {
+.article-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: #000;
     text-decoration: none;
-    color: black;
-    font-size: 15px;
-    line-height: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
-    transition: all 0.18s;
-}
-
-#nav-container > a:hover {
-    background-color: #04346C;
-    color: white;
-}
-
-header {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 240px;
-    background-color: white;
-}
-
-#header-container {
-    display: flex;
-    justify-content: center;
-    width: 880px; height: 100%;
-}
-
-#header-container > img {
-    height: 66%;
-    margin-top: 55px;
-}
-
-#header-container > div {
-    width: 380px; height: 100%;
-    padding-left: 40px;
-}
-
-#header-container > div > h1{
     font-family: 'DM Serif Display', serif;
-    margin: 0;
-    margin-top: 58px;
-    color: #04346C;
-    font-size: 63px;
 }
 
-#header-container > div > p{
-    margin: 0;
-    color: #04346C;
-    margin-left: 4px;
+.article-title:hover {
+    text-decoration: underline;
+}
+
+.article-date {
+    margin-top: 2px; margin-bottom: 0px;
+    color: #5A5A5A;
     font-size: 15px;
+}
+
+.article-preview {
+    margin-top: 10px;
+    color: #5A5A5A;
+    font-size: 15px;
+}
+
+.category-label {
+    margin: 0;
+    position: absolute;
+    top: 8px; right: 2px;
+    border-radius: 5px;
+    padding-left: 6px; padding-right: 6px; padding-bottom: 2px;
+    color: #FFF; font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+}
+
+.label-news {
+    background-color: #04346C;
 }

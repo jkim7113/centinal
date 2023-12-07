@@ -2,17 +2,15 @@
 <html>
     <head>
         {{ template "config" .}}
-        <link rel="stylesheet" href="static/css/index.css">
-        <title>The Centinal - The Student News Website of Champaign Centennial High School</title>
+        <link rel="stylesheet" href="static/css/category.css">
+        <title>The Centinal - News</title>
     </head>
     <body>
         {{ template "header" .}}
         <div id="body-wrap">
             <div id="body-container">
-                <div id="latest-wrap">
-                </div>
-                <div id="news-wrap">
-                    <h4>Latest</h4>
+                <div id={{ print (index .Data 0).Category "-wrap" }}>
+                    <h4>{{ (index .Data 0).Category }}</h4>
                     {{ range .Data }}
                         {{if and (.UUID) (.Title) (.Body) (.Date) (.Category)}}
                             <div class="article-wrap">

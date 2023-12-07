@@ -13,9 +13,10 @@ import (
 type ArticleService interface {
 	Create(ctx context.Context, request request.ArticleCreateRequest)
 	Update(ctx context.Context, request request.ArticleUpdateRequest)
-	Delete(ctx context.Context, Id int)
-	FindById(ctx context.Context, Id int) response.ArticleResponse
+	Delete(ctx context.Context, UUID string)
+	FindById(ctx context.Context, UUID string) response.ArticleResponse
 	FindAll(ctx context.Context) []response.ArticleResponse
+	FindByCategory(ctx context.Context, category string) []response.ArticleResponse
 }
 
 type ArticleServiceImpl struct {
@@ -26,51 +27,70 @@ func NewArticleService(articleRepository repository.ArticleRepository) ArticleSe
 	return &ArticleServiceImpl{ArticleRepository: articleRepository}
 }
 
-func (repo *ArticleServiceImpl) Create(ctx context.Context, request request.ArticleCreateRequest) {
+func (service *ArticleServiceImpl) Create(ctx context.Context, request request.ArticleCreateRequest) {
 	ERT := util.EstimateReadingTime(request.Body)
 	article := model.Article{
-		Title:    request.Title,
-		Body:     request.Body,
-		ERT:      ERT,
-		Category: request.Category,
+		Title:     request.Title,
+		Body:      request.Body,
+		ERT:       ERT,
+		Category:  request.Category,
+		Thumbnail: request.Thumbnail,
 	}
-	repo.ArticleRepository.Create(ctx, article)
+	service.ArticleRepository.Create(ctx, article)
 }
 
-func (repo *ArticleServiceImpl) Update(ctx context.Context, request request.ArticleUpdateRequest) {
-	article, err := repo.ArticleRepository.FindById(ctx, request.Id)
+func (service *ArticleServiceImpl) Update(ctx context.Context, request request.ArticleUpdateRequest) {
+	article, err := service.ArticleRepository.FindById(ctx, request.UUID)
 	util.PanicIfError(err)
 
 	ERT := util.EstimateReadingTime(request.Body)
 	article = model.Article{
-		Id:       request.Id,
-		Title:    request.Title,
-		Body:     request.Body,
-		ERT:      ERT,
-		Category: request.Category,
+		UUID:      request.UUID,
+		Title:     request.Title,
+		Body:      request.Body,
+		ERT:       ERT,
+		Category:  request.Category,
+		Thumbnail: request.Thumbnail,
 	}
-	repo.ArticleRepository.Update(ctx, article)
+	service.ArticleRepository.Update(ctx, article)
 }
 
-func (repo *ArticleServiceImpl) Delete(ctx context.Context, Id int) {
-	_, err := repo.ArticleRepository.FindById(ctx, Id)
+func (service *ArticleServiceImpl) Delete(ctx context.Context, UUID string) {
+	_, err := service.ArticleRepository.FindById(ctx, UUID)
 	util.PanicIfError(err)
-	repo.ArticleRepository.Delete(ctx, Id)
+	service.ArticleRepository.Delete(ctx, UUID)
 }
 
-func (repo *ArticleServiceImpl) FindById(ctx context.Context, Id int) response.ArticleResponse {
-	article, err := repo.ArticleRepository.FindById(ctx, Id)
+func (service *ArticleServiceImpl) FindById(ctx context.Context, UUID string) response.ArticleResponse {
+	article, err := service.ArticleRepository.FindById(ctx, UUID)
 	util.PanicIfError(err)
 
 	return response.ArticleResponse(article)
 }
 
-func (repo *ArticleServiceImpl) FindAll(ctx context.Context) []response.ArticleResponse {
-	articles := repo.ArticleRepository.FindAll(ctx)
+func (service *ArticleServiceImpl) FindAll(ctx context.Context) []response.ArticleResponse {
+	articles := service.ArticleRepository.FindAll(ctx)
 	var articleResponse []response.ArticleResponse
 
 	for _, v := range articles {
-		article := response.ArticleResponse{Id: v.Id, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT}
+		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
+		if len(article.Body) > 250 {
+			article.Body = article.Body[:250] + "..."
+		}
+		articleResponse = append(articleResponse, article)
+	}
+	return articleResponse
+}
+
+func (service *ArticleServiceImpl) FindByCategory(ctx context.Context, category string) []response.ArticleResponse {
+	articles := service.ArticleRepository.FindByCategory(ctx, category)
+	var articleResponse []response.ArticleResponse
+
+	for _, v := range articles {
+		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
+		if len(article.Body) > 250 {
+			article.Body = article.Body[:250] + "..."
+		}
 		articleResponse = append(articleResponse, article)
 	}
 	return articleResponse

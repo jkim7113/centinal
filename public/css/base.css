@@ -1,0 +1,141 @@
+html, body {
+    width: 100%;
+    height: 200%;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+html {
+    margin-top: 266px;
+}
+
+.undraggable {
+    -webkit-user-select: none; /* Safari, Chrome */
+    -webkit-user-drag: none;
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE */
+    user-select: none; /* CSS3 */
+}
+
+nav {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0; left:0;
+    width: 100%; height: 32px;
+}
+
+#nav-container {
+    width: 880px; height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+#nav-container > a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    line-height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: all 0.18s;
+}
+
+#nav-container > a:hover {
+    background-color: #04346C;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 266px;
+    background-color: white;
+}
+
+#header-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 880px; height: 100%;
+}
+
+#header-container > a {
+    height: 56%;
+    margin-top: 30px;
+}
+
+#header-container > a > img {
+    height: 100%;
+}
+
+#header-top {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 14%;
+    margin-top: 20px;
+}
+
+#header-top > span {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 32%;
+}
+
+#header-bottom {
+    width: 380px; height: 86%;
+    padding-left: 40px;
+}
+
+#header-bottom > h1{
+    font-family: 'DM Serif Display', serif;
+    margin: 0;
+    margin-top: 34px;
+    color: #04346C;
+    font-size: 63px;
+}
+
+#header-bottom > p{
+    margin: 0;
+    color: #04346C;
+    margin-left: 4px;
+    font-size: 15px;
+}
+
+.header-button {
+    background-color: #04346C;
+    text-decoration: none; font-size: 15px; color: white;
+    padding-left: 18px; padding-right: 18px;
+    border-radius: 25px;
+    line-height: 36px;
+}
+
+#header-search-icon{
+    height: 92%;
+
+}
+
+#body-wrap {
+    width: 100%;
+    margin-top: 16px;
+    border-top: #000;
+    display: flex; 
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#body-container {
+    border-top: #000 1.2px solid !important;
+    width: 1152px;
+    display: flex; flex-wrap: nowrap; 
+    justify-content: space-between;
+}
