@@ -2,7 +2,7 @@
 <html>
     <head>
         {{ template "config" .}}
-        <link rel="stylesheet" href="static/css/index.css">
+        <link rel="stylesheet" href="/static/css/index.css">
         <title>The Centinal - The Student News Website of Champaign Centennial High School</title>
     </head>
     <body>
@@ -27,6 +27,7 @@
                     {{ end }}
                 </div>
             </div>
+            {{ template "footer" }}
         </div>
     </body>
 </html>

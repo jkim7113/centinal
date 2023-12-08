@@ -1,6 +1,5 @@
 html, body {
-    width: 100%;
-    height: 200%;
+    width: 100%; height: 100%;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
 }
@@ -93,7 +92,7 @@ header {
     display: flex;
     justify-content: space-between;
     height: 100%;
-    width: 32%;
+    width: 23%;
 }
 
 #header-bottom {
@@ -117,8 +116,9 @@ header {
 }
 
 .header-button {
-    background-color: #04346C;
-    text-decoration: none; font-size: 15px; color: white;
+    border: #000 1.5px solid;
+    background-color: #FFF;
+    text-decoration: none; font-size: 15px; color: #000;
     padding-left: 18px; padding-right: 18px;
     border-radius: 25px;
     line-height: 36px;
@@ -130,10 +130,12 @@ header {
 }
 
 #body-wrap {
-    width: 100%;
+    position: relative;
+    width: 100%; min-height: 100vh;
+    padding-bottom: 128px;
     margin-top: 16px;
     border-top: #000;
-    display: flex; 
+    display: flex; flex-wrap: wrap;
     justify-content: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -143,4 +145,49 @@ header {
     width: 1152px;
     display: flex; flex-wrap: nowrap; 
     justify-content: space-between;
+}
+
+.label-news {
+    background-color: #04346C;
+}
+
+.category-label {
+    margin: 0;
+    position: absolute;
+    top: 8px; right: 2px;
+    border-radius: 5px;
+    padding-left: 6px; padding-right: 6px; padding-bottom: 2px;
+    color: #FFF; font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+}
+
+#comment-wrap {
+    margin-bottom: 20px;
+    width: 1152px;
+    border-top: #989898 1px solid;
+
+}
+
+#comment-placeholder {
+    width: 100%;
+    height: 220px;
+    background-color: rgb(244,244,244);
+    text-align: center;
+    line-height: 200px;
+}
+
+footer {
+    width: 100%; height: 124px;
+    position: absolute;
+    bottom: 0;
+    display: flex; 
+    justify-content: center;
+}
+
+#footer-container {
+    border-top: #989898 1px solid;
+    margin-top: 4px;
+    width: 1152px; height: 100%;
+    text-align: center; line-height: 88px;
 }

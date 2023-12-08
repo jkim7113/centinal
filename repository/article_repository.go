@@ -41,7 +41,7 @@ func (repo *ArticleRepositoryImpl) Update(ctx context.Context, article model.Art
 	util.PanicIfError(err)
 	defer util.CommitOrRollback(tx)
 
-	SQL := "UPDATE articles SET Title = ?, Body = ?, ERT = ?, Category = ?, Thumbnail = ? WHERE UUID = ?"
+	SQL := "UPDATE articles SET Title = ?, Body = ?, ERT = ?, Category = ?, Thumbnail = ? WHERE UUID = UNHEX(?)"
 	_, err = tx.ExecContext(ctx, SQL, article.Title, article.Body, article.ERT, article.Category, article.Thumbnail, article.UUID)
 	util.PanicIfError(err)
 }

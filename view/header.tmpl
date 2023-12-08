@@ -1,0 +1,29 @@
+{{ define "header" }}
+<header>
+    <div id="header-container" >
+        <div id="header-top" class="undraggable">
+            <span>
+                <a class="header-button" href="/login">LOG IN</a>
+                <a class="header-button" href="/register">REGISTER</a>
+            </span>
+            <img id="header-search-icon" src="/static/img/search-black.webp" />
+        </div>
+        <a href="/"><img class="undraggable" src="/static/img/centinal-logo-navy.webp" alt="Centinal Logo" /></a>
+        <div id="header-bottom" class="undraggable">
+            <h1>The Centinal</h1>
+            <p>The Student News Website of Champaign Centennial High School</p>
+        </div>
+    </div>
+</header>
+<nav>
+    <div id="nav-container">
+        <a class={{ if eq .Category "news" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/news">NEWS</a>
+        <a class={{ if eq .Category "opinions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/opinions">OPINIONS</a>
+        <a class={{ if eq .Category "fictions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/fictions">FICTIONS & POETRY</a>
+        <a class={{ if eq .Category "sports" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/sports">SPORTS</a>
+        <a class={{ if eq .Category "reviews" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/reviews">REVIEWS</a>
+        <a class={{ if eq .Category "surveys" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/surveys">SURVEYS</a>
+        <a class={{ if eq .Category "staff" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/staff">STAFF</a>
+    </div>
+</nav>
+{{ end }}

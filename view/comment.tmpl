@@ -1,0 +1,10 @@
+{{ define "comment" }}
+    {{ if .Data }}
+        {{ range .Data }}
+            <div id="comment-wrap">
+                <h2>Comments</h2>
+                <div id="comment-placeholder">{{ .UUID }}</div>
+            </div>
+        {{ end }}
+    {{ end }}
+{{ end }}

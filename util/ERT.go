@@ -7,5 +7,6 @@ import (
 
 func EstimateReadingTime(str string) int {
 	wordLength := len(strings.Fields(str))
-	return int(math.Round(float64(wordLength) / 200.0))
+	ERT := math.Round(float64(wordLength) / 200.0)
+	return int(math.Max(ERT, 1))
 }

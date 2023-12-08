@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ template "config" .}}
+        <link rel="stylesheet" href="/static/css/article.css">
+        <title>The Centinal - News</title>
+    </head>
+    <body>
+        {{ template "header" .}}
+        <div id="body-wrap">
+            <div id="body-container">
+                <div id="article-wrap">
+                    <div id="article-main">
+                        {{ if .Data }}
+                            {{ range .Data }}
+                                {{ if and (.UUID) (.Title) (.Body) (.Date) (.Category) }}
+                                        <h1 id="article-title">{{ .Title }}</h1>
+                                        <p id="article-info" >{{ print .ERT " min · Published " .Date }}</p>
+                                        <p id="article-body" >{{ .Body }}</p>
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                    <div id="article-sidebar">
+
+                    </div>
+                </div>
+            </div>
+            {{ template "comment" .}}
+            {{ template "footer" }}
+        </div>
+    </body>
+</html>

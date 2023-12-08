@@ -17,7 +17,8 @@ func NewRouter(articleController *controller.ArticleController) *chi.Mux {
 	router.Get("/", articleController.FindAll)
 	router.Get("/category/{Category}", articleController.FindByCategory)
 	router.Get("/article/{UUID}", articleController.FindById)
-	router.Post("/articles", articleController.Create)
+	router.Post("/article", articleController.Create)
+	router.Put("/article/{UUID}", articleController.Update)
 	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./public"))))
 
 	return router
