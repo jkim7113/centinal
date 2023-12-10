@@ -22,7 +22,25 @@
     padding-top: 8px;
 }
 
+.article-top {
+    width: 100%;
+    display: flex; flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.category-label {
+    margin: 0;
+    max-width: 20%;
+    border-radius: 5px;
+    padding-left: 6px; padding-right: 6px; padding-bottom: 2px;
+    color: #FFF; font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+}
+
 .article-title {
+    width: 74%;
     font-size: 17px;
     font-weight: 500;
     color: #000;

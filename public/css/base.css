@@ -151,15 +151,8 @@ header {
     background-color: #04346C;
 }
 
-.category-label {
-    margin: 0;
-    position: absolute;
-    top: 8px; right: 2px;
-    border-radius: 5px;
-    padding-left: 6px; padding-right: 6px; padding-bottom: 2px;
-    color: #FFF; font-size: 15px;
-    font-family: 'Open Sans', sans-serif;
-    text-decoration: none;
+.label-opinions, .label-reviews {
+    background-color: #cc3300;
 }
 
 #comment-wrap {

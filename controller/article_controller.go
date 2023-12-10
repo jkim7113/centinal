@@ -26,11 +26,11 @@ func NewArticleController(articleService service.ArticleService) *ArticleControl
 
 func (controller *ArticleController) Create(w http.ResponseWriter, r *http.Request) {
 	articleCreateRequest := request.ArticleCreateRequest{}
-	util.DecodeRequestBody(r, &articleCreateRequest)
+	util.DecodeFormData(r, &articleCreateRequest)
 
 	controller.ArticleService.Create(r.Context(), articleCreateRequest)
 	HTTPResponse := response.HTTPResponse{
-		Code:   200,
+		Code:   201,
 		Status: "Ok",
 		Data:   nil,
 	}

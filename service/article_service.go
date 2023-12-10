@@ -74,8 +74,8 @@ func (service *ArticleServiceImpl) FindAll(ctx context.Context) []response.Artic
 
 	for _, v := range articles {
 		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
-		if len(article.Body) > 250 {
-			article.Body = article.Body[:250] + "..."
+		if len(article.Body) > 150 {
+			article.Body = article.Body[:150] + "..."
 		}
 		articleResponse = append(articleResponse, article)
 	}
@@ -88,8 +88,8 @@ func (service *ArticleServiceImpl) FindByCategory(ctx context.Context, category 
 
 	for _, v := range articles {
 		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
-		if len(article.Body) > 250 {
-			article.Body = article.Body[:250] + "..."
+		if len(article.Body) > 150 {
+			article.Body = article.Body[:150] + "..."
 		}
 		articleResponse = append(articleResponse, article)
 	}
