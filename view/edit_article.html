@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ template "config" }}
+        <link rel="stylesheet" href="/static/css/edit_article.css">
+        <title>The Centinal - News</title>
+    </head>
+    <body>
+        {{ template "header" }}
+        <div id="body-wrap">
+            <div id="body-container">
+                <div>
+                    <form id="edit-article-form" action={{ .Path }} method="PUT">
+                        <label for="Title">Title</label>
+                        <input type="text" id="edit-article-title" name="Title" />
+                        <label for="Category">Category</label>
+                        <input type="text" id="edit-article-category" name="Category" />
+                        <label for="Body">Body</label>
+                        <textarea type="text" id="edit-article-body" name="Body"></textarea>
+                        <input type="hidden" id="edit-article-thumbnail" name="Thumbnail" value=""/>
+                        <button type="submit">UPDATE</button>
+                    </form>
+                </div>
+            </div>
+            {{ template "footer" }}
+        </div>
+        <script text="text/javascript" src="/static/js/edit_article.js"></script>
+    </body>
+</html>

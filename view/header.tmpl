@@ -17,13 +17,13 @@
 </header>
 <nav>
     <div id="nav-container">
-        <a class={{ if eq .Category "news" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/news">NEWS</a>
-        <a class={{ if eq .Category "opinions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/opinions">OPINIONS</a>
-        <a class={{ if eq .Category "fictions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/fictions">FICTIONS & POETRY</a>
-        <a class={{ if eq .Category "sports" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/sports">SPORTS</a>
-        <a class={{ if eq .Category "reviews" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/reviews">REVIEWS</a>
-        <a class={{ if eq .Category "surveys" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/surveys">SURVEYS</a>
-        <a class={{ if eq .Category "staff" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/staff">STAFF</a>
+        <a class={{ if eq .Path "/category/news" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/news">NEWS</a>
+        <a class={{ if eq .Path "/category/opinions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/opinions">OPINIONS</a>
+        <a class={{ if eq .Path "/category/fictions" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/fictions">FICTIONS & POETRY</a>
+        <a class={{ if eq .Path "/category/sports" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/sports">SPORTS</a>
+        <a class={{ if eq .Path "/category/reviews" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/reviews">REVIEWS</a>
+        <a class={{ if eq .Path "/category/surveys" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/category/surveys">SURVEYS</a>
+        <a class={{ if eq .Path "staff" }}{{ "selected" }}{{ else }}{{ "" }}{{ end }} href="/staff">STAFF</a>
     </div>
 </nav>
 {{ end }}
