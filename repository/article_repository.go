@@ -31,8 +31,8 @@ func (repo *ArticleRepositoryImpl) Create(ctx context.Context, article model.Art
 	util.PanicIfError(err)
 	defer util.CommitOrRollback(tx)
 
-	SQL := "INSERT INTO articles (Title, Body, ERT, Category, Thumbnail) VALUES (?, ?, ?, ?, ?)"
-	_, err = tx.ExecContext(ctx, SQL, article.Title, article.Body, article.ERT, article.Category, article.Thumbnail)
+	SQL := "INSERT INTO articles (Title, Body, ERT, Category, Thumbnail, AuthorId) VALUES (?, ?, ?, ?, ?, ?)"
+	_, err = tx.ExecContext(ctx, SQL, article.Title, article.Body, article.ERT, article.Category, article.Thumbnail, article.Author.UUID)
 	util.PanicIfError(err)
 }
 
@@ -41,7 +41,7 @@ func (repo *ArticleRepositoryImpl) Update(ctx context.Context, article model.Art
 	util.PanicIfError(err)
 	defer util.CommitOrRollback(tx)
 
-	SQL := "UPDATE articles SET Title = ?, Body = ?, ERT = ?, Category = ?, Thumbnail = ? WHERE UUID = UNHEX(?)"
+	SQL := "UPDATE articles SET Title = ?, Body = ?, ERT = ?, Category = ?, Thumbnail = ? WHERE articles.UUID = UNHEX(?)"
 	_, err = tx.ExecContext(ctx, SQL, article.Title, article.Body, article.ERT, article.Category, article.Thumbnail, article.UUID)
 	util.PanicIfError(err)
 }
@@ -61,7 +61,7 @@ func (repo *ArticleRepositoryImpl) FindById(ctx context.Context, UUID string) (m
 	util.PanicIfError(err)
 	defer util.CommitOrRollback(tx)
 
-	SQL := "SELECT HEX(UUID), Title, Body, Date, ERT, Thumbnail, Category FROM articles WHERE UUID = UNHEX(?)"
+	SQL := "SELECT HEX(articles.UUID), Title, Body, users.Username, PFP, HEX(users.UUID), articles.Date, ERT, Thumbnail, Category FROM articles LEFT JOIN users ON AuthorId = users.Id WHERE articles.UUID = UNHEX(?)"
 	result, errQuery := tx.QueryContext(ctx, SQL, UUID)
 	util.PanicIfError(errQuery)
 	defer result.Close()
@@ -69,7 +69,7 @@ func (repo *ArticleRepositoryImpl) FindById(ctx context.Context, UUID string) (m
 	article := model.Article{}
 
 	if result.Next() {
-		err := result.Scan(&article.UUID, &article.Title, &article.Body, &article.Date, &article.ERT, &article.Thumbnail, &article.Category)
+		err := result.Scan(&article.UUID, &article.Title, &article.Body, &article.Author.Username, &article.Author.PFP, &article.Author.UUID, &article.Date, &article.ERT, &article.Thumbnail, &article.Category)
 		util.PanicIfError(err)
 		return article, nil
 	} else {

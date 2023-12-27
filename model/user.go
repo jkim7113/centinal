@@ -1,11 +1,13 @@
 package model
 
 type User struct {
-	UUID string
+	UUID     string
 	Username string
-	Email string
-	Pw string
-	Bio string
-	PFP string
-	Role string
+	Email    string
+	Pw       string
+	Bio      string
+	Date     string
+	PFP      string
+	Role     string
+	Verified bool
 }

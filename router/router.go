@@ -2,37 +2,38 @@ package router
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jkim7113/centinal/config"
 	"github.com/jkim7113/centinal/controller"
-	"github.com/jkim7113/centinal/model"
+	"github.com/jkim7113/centinal/repository"
+	"github.com/jkim7113/centinal/service"
 )
 
-func NewRouter(articleController *controller.ArticleController) *chi.Mux {
+func NewRouter() *chi.Mux {
 	router := chi.NewRouter()
 	portString := os.Getenv("PORT")
 	fmt.Printf("Server Listening on PORT %s \n", portString)
+	//DB Configuration
+	Db := config.CreateConnection()
 
-	router.Get("/", articleController.FindAll)
-	router.Get("/category/{Category}", articleController.FindByCategory)
-	router.Post("/article", articleController.Create)
-	router.Route("/article/{UUID}", func(r chi.Router) {
-		r.Get("/", articleController.FindById)
-		r.Put("/", articleController.Update)
-		r.Delete("/", articleController.Delete)
-		r.Get("/edit", func(w http.ResponseWriter, r *http.Request) {
-			UUID := chi.URLParam(r, "UUID")
-			tmpl := template.Must(template.ParseFiles("./view/edit_article.html", "./view/config.tmpl", "./view/header.tmpl", "./view/footer.tmpl"))
-			tmpl.Execute(w, model.DataToRender{Data: nil, Path: "/article/" + UUID})
-		})
+	articleRepository := repository.NewArticleRepository(Db)
+	articleService := service.NewArticleService(articleRepository)
+	articleController := controller.NewArticleController(articleService)
+
+	userRepository := repository.NewUserRepository(Db)
+	userService := service.NewUserService(userRepository)
+	userController := controller.NewUserController(userService)
+
+	router.Use(middleware.Recoverer)
+	router.Group(func(r chi.Router) {
+		NewArticleRouter(r, articleController)
 	})
-	
-	router.Get("/new/article", func(w http.ResponseWriter, r *http.Request) {
-		tmpl := template.Must(template.ParseFiles("./view/new_article.html", "./view/config.tmpl", "./view/header.tmpl", "./view/footer.tmpl"))
-		tmpl.Execute(w, nil)
+	router.Group(func(r chi.Router) {
+		NewUserRouter(r, userController)
 	})
 	router.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("./public"))))
 

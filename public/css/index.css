@@ -32,7 +32,6 @@
 .category-label {
     margin: 0;
     max-width: 20%;
-    border-radius: 5px;
     padding-left: 6px; padding-right: 6px; padding-bottom: 2px;
     color: #FFF; font-size: 15px;
     font-family: 'Open Sans', sans-serif;

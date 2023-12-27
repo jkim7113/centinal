@@ -19,12 +19,12 @@ func DecodeFormData(r *http.Request, result interface{}) {
 			PanicIfError(err)
 		}
 		switch field.Kind() {
-			case reflect.Int:
-				temp, err := strconv.Atoi(value[0])
-				PanicIfError(err)
-				field.Set(reflect.ValueOf(temp))
-			case reflect.String:
-				field.SetString(value[0])
+		case reflect.Int:
+			temp, err := strconv.Atoi(value[0])
+			PanicIfError(err)
+			field.Set(reflect.ValueOf(temp))
+		case reflect.String:
+			field.SetString(value[0])
 		}
 	}
 }

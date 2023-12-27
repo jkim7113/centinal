@@ -35,6 +35,7 @@ func (service *ArticleServiceImpl) Create(ctx context.Context, request request.A
 		ERT:       ERT,
 		Category:  request.Category,
 		Thumbnail: request.Thumbnail,
+		// Author.UUID: ,
 	}
 	service.ArticleRepository.Create(ctx, article)
 }
@@ -65,7 +66,18 @@ func (service *ArticleServiceImpl) FindById(ctx context.Context, UUID string) re
 	article, err := service.ArticleRepository.FindById(ctx, UUID)
 	util.PanicIfError(err)
 
-	return response.ArticleResponse(article)
+	return response.ArticleResponse{
+		UUID:       article.UUID,
+		Title:      article.Title,
+		Body:       article.Body,
+		Author:     article.Author.Username,
+		AuthorPFP:  article.Author.PFP,
+		AuthorUUID: article.Author.UUID,
+		Date:       article.Date,
+		ERT:        article.ERT,
+		Category:   article.Category,
+		Thumbnail:  article.Thumbnail,
+	}
 }
 
 func (service *ArticleServiceImpl) FindAll(ctx context.Context) []response.ArticleResponse {
@@ -73,7 +85,21 @@ func (service *ArticleServiceImpl) FindAll(ctx context.Context) []response.Artic
 	var articleResponse []response.ArticleResponse
 
 	for _, v := range articles {
-		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
+		article := response.ArticleResponse{
+			UUID:       v.UUID,
+			Title:      v.Title,
+			Body:       v.Body,
+			Author:     v.Author.Username,
+			AuthorPFP:  v.Author.PFP,
+			AuthorUUID: v.Author.UUID,
+			Date:       v.Date,
+			ERT:        v.ERT,
+			Category:   v.Category,
+			Thumbnail:  v.Thumbnail,
+		}
+		if len(article.Title) > 50 {
+			article.Title = article.Title[:50] + "..."
+		}
 		if len(article.Body) > 150 {
 			article.Body = article.Body[:150] + "..."
 		}
@@ -87,7 +113,21 @@ func (service *ArticleServiceImpl) FindByCategory(ctx context.Context, category 
 	var articleResponse []response.ArticleResponse
 
 	for _, v := range articles {
-		article := response.ArticleResponse{UUID: v.UUID, Body: v.Body, Title: v.Title, Date: v.Date, ERT: v.ERT, Category: v.Category}
+		article := response.ArticleResponse{
+			UUID:       v.UUID,
+			Title:      v.Title,
+			Body:       v.Body,
+			Author:     v.Author.Username,
+			AuthorPFP:  v.Author.PFP,
+			AuthorUUID: v.Author.UUID,
+			Date:       v.Date,
+			ERT:        v.ERT,
+			Category:   v.Category,
+			Thumbnail:  v.Thumbnail,
+		}
+		if len(article.Title) > 50 {
+			article.Title = article.Title[:50] + "..."
+		}
 		if len(article.Body) > 150 {
 			article.Body = article.Body[:150] + "..."
 		}
